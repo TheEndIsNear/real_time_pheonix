@@ -87,4 +87,10 @@ channel.push("invalid")
   .receive("ok", (resp) => console.log("won't happen"))
   .receive("error", (resp) => console.log("won't happen"))
   .receive("timeout", (resp) => consol.erro("invalid event timeout"))
+
+const authSocket = new Socket("/auth_socket", {
+  params: { token: window.authToken }
+})
+authSocket.onOpen(() => console.log('authSocket connected'))
+authSocket.connect()
 export default socket
