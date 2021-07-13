@@ -100,4 +100,11 @@ recurringChannel.on("new_token", (payload) => {
   console.log("received new auth token", payload)
 })
 recurringChannel.join()
+
+const dupeChannel = authSocket.channel("dupe")
+
+dupeChannel.on("number", (payload) => {
+  console.log("new number received", payload)
+})
+dupeChannel.join()
 export default socket
