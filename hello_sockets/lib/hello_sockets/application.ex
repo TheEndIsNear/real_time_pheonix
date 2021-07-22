@@ -3,7 +3,8 @@ defmodule HelloSockets.Application do
   # for more information on OTP Applications
   @moduledoc false
 
-  alias HelloSockets.Pipeline.{Consumer, Producer}
+  alias HelloSockets.Pipeline.Producer
+  alias HelloSockets.Pipeline.ConsumerSupervisor, as: Consumer
 
   use Application
 
