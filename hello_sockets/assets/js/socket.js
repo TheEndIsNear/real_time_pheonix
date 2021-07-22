@@ -150,5 +150,8 @@ const authUserCannel = authSocket.channel(`user:${window.userId}`)
 authUserCannel.on("push", (payload) => {
   console.log("received auth user push", payload)
 })
+authUserCannel.on("push_timed", (payload) => {
+  console.log("received times auth user push", payload)
+})
 authUserCannel.join()
 export default socket
