@@ -1,11 +1,11 @@
-#---
+# ---
 # Excerpted from "Real-Time Phoenix",
 # published by The Pragmatic Bookshelf.
 # Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/sbsockets for more book information.
-#---
+# ---
 defmodule Sneakers23.Application do
   @moduledoc false
 
@@ -16,7 +16,7 @@ defmodule Sneakers23.Application do
       Sneakers23.Repo,
       Sneakers23Web.Endpoint,
       Sneakers23.Inventory,
-      Sneakers23.Replication,
+      Sneakers23.Replication
     ]
 
     opts = [strategy: :one_for_one, name: Sneakers23.Supervisor]
