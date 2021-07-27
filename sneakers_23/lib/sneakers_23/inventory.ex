@@ -1,11 +1,11 @@
-#---
+# ---
 # Excerpted from "Real-Time Phoenix",
 # published by The Pragmatic Bookshelf.
 # Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/sbsockets for more book information.
-#---
+# ---
 defmodule Sneakers23.Inventory do
   alias __MODULE__.{CompleteProduct, DatabaseLoader, Server, Store}
 
@@ -32,7 +32,9 @@ defmodule Sneakers23.Inventory do
     pid = Keyword.get(opts, :pid, __MODULE__)
 
     %{id: id} = Store.mark_product_released!(product_id)
-    {:ok, _inventory} = Server.mark_product_released!(pid, id)
+    {:ok, inventory} = Server.mark_product_released!(pid, id)
+    {:ok, product} = CompleteProduct.get_product_by_id(inventory, id)
+    Sneakers23Web.notify_product_released(product)
 
     :ok
   end
