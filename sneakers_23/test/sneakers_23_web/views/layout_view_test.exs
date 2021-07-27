@@ -7,5 +7,4 @@
 # Visit http://www.pragmaticprogrammer.com/titles/sbsockets for more book information.
 #---
 defmodule Sneakers23Web.LayoutViewTest do
-  use Sneakers23Web.ConnCase, async: true
 end

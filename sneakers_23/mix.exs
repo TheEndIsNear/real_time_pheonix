@@ -1,11 +1,11 @@
-#---
+# ---
 # Excerpted from "Real-Time Phoenix",
 # published by The Pragmatic Bookshelf.
 # Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/sbsockets for more book information.
-#---
+# ---
 defmodule Sneakers23.MixProject do
   use Mix.Project
 
@@ -41,15 +41,15 @@ defmodule Sneakers23.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.7"},
-      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix, "~> 1.5.9"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.0"},
-      {:ecto_sql, "~> 3.0"},
+      {:ecto_sql, "~> 3.6.2"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 2.11"},
+      {:phoenix_html, "~> 2.14.3"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
+      {:gettext, "~> 0.18.2"},
+      {:jason, "~> 1.2.2"},
       {:plug_cowboy, "~> 2.0"}
     ]
   end
