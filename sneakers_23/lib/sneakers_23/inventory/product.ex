@@ -27,6 +27,15 @@ defmodule Sneakers23.Inventory.Product do
   def changeset(product, attrs) do
     product
     |> cast(attrs, [:sku, :order, :brand, :name, :color, :price_usd, :main_image_url, :released])
-    |> validate_required([:sku, :order, :brand, :name, :color, :price_usd, :main_image_url, :released])
+    |> validate_required([
+      :sku,
+      :order,
+      :brand,
+      :name,
+      :color,
+      :price_usd,
+      :main_image_url,
+      :released
+    ])
   end
 end

@@ -20,11 +20,7 @@ config :sneakers_23, Sneakers23.Repo,
 # you can enable the server option below.
 config :sneakers_23, Sneakers23Web.Endpoint,
   http: [port: 4002],
-  server: true
+  server: false
 
 # Print only warnings and errors during test
 config :logger, level: :warn
-
-config :hound, driver: "chrome_driver", browser: "chrome_headless"
-
-config :sneakers_23, sql_sandbox: true

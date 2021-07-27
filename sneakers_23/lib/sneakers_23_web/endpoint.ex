@@ -9,11 +9,7 @@
 defmodule Sneakers23Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :sneakers_23
 
-  if Application.get_env(:sneakers_23, :sql_sandbox) do
-    plug Phoenix.Ecto.SQL.Sandbox
-  end
-
-  socket "/product_socket", Sneakers23Web.ProductSocket,
+  socket "/socket", Sneakers23Web.UserSocket,
     websocket: true,
     longpoll: false
 

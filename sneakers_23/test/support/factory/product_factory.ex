@@ -20,7 +20,8 @@ defmodule Test.Factory.ProductFactory do
       order: 1,
       price_usd: 100,
       released: false
-    } |> Map.merge(overrides)
+    }
+    |> Map.merge(overrides)
   end
 
   def create!(overrides \\ %{}) do

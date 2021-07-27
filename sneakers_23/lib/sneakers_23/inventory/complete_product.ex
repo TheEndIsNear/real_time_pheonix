@@ -44,7 +44,9 @@ defmodule Sneakers23.Inventory.CompleteProduct do
 
   def get_item_by_id(inventory = %{items: items}, id) do
     case Map.fetch(items, id) do
-      :error -> {:error, :not_found}
+      :error ->
+        {:error, :not_found}
+
       {:ok, item} ->
         item = put_availability_onto_item(item, inventory)
         {:ok, item}

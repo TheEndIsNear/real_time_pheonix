@@ -14,9 +14,9 @@ defmodule Sneakers23.Inventory.ItemAvailabilityTest do
     params = Test.Factory.ItemAvailabilityFactory.params()
 
     assert {:ok, availability = %ItemAvailability{}} =
-      %ItemAvailability{}
-      |> ItemAvailability.changeset(params)
-      |> Repo.insert()
+             %ItemAvailability{}
+             |> ItemAvailability.changeset(params)
+             |> Repo.insert()
 
     Enum.each(params, fn {key, val} ->
       assert Map.fetch!(availability, key) == val

@@ -14,9 +14,9 @@ defmodule Sneakers23.Inventory.ItemTest do
     params = Test.Factory.ItemFactory.params()
 
     assert {:ok, item = %Item{}} =
-      %Item{}
-      |> Item.changeset(params)
-      |> Repo.insert()
+             %Item{}
+             |> Item.changeset(params)
+             |> Repo.insert()
 
     Enum.each(params, fn {key, val} ->
       assert Map.fetch!(item, key) == val

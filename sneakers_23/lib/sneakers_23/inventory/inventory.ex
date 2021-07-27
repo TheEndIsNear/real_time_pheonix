@@ -14,25 +14,28 @@ defmodule Sneakers23.Inventory.Inventory do
   end
 
   def add_products(state = %{products: products}, to_add) do
-    new_products = Enum.reduce(to_add, products, fn product, products ->
-      Map.put(products, product.id, product)
-    end)
+    new_products =
+      Enum.reduce(to_add, products, fn product, products ->
+        Map.put(products, product.id, product)
+      end)
 
     %{state | products: new_products}
   end
 
   def add_items(state = %{items: items}, to_add) do
-    new_items = Enum.reduce(to_add, items, fn item, items ->
-      Map.put(items, item.id, item)
-    end)
+    new_items =
+      Enum.reduce(to_add, items, fn item, items ->
+        Map.put(items, item.id, item)
+      end)
 
     %{state | items: new_items}
   end
 
   def add_availabilities(state = %{availability: availability}, to_add) do
-    new_avail = Enum.reduce(to_add, availability, fn ia, availability ->
-      Map.put(availability, ia.id, ia)
-    end)
+    new_avail =
+      Enum.reduce(to_add, availability, fn ia, availability ->
+        Map.put(availability, ia.id, ia)
+      end)
 
     %{state | availability: new_avail}
   end
@@ -46,7 +49,7 @@ defmodule Sneakers23.Inventory.Inventory do
   def get_availability_for_item(%{availability: avail}, %{id: item_id}) do
     avail
     |> Map.values()
-    |> Enum.find(& &1.item_id == item_id)
+    |> Enum.find(&(&1.item_id == item_id))
   end
 
   def mark_product_released!(state = %{products: products}, id) do
