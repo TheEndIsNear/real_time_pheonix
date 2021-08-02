@@ -50,7 +50,8 @@ defmodule Sneakers23.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.18.2"},
       {:jason, "~> 1.2.2"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:hound, "~> 1.0"}
     ]
   end
 
