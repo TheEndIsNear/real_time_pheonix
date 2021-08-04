@@ -34,4 +34,27 @@ defmodule Acceptance.ProductPageTest do
     refute inner_html(coming_soon) =~ "size-container"
     assert inner_html(available) =~ "size-container"
   end
+
+  test "the page updates when a product reduces inventory" do
+    {:ok, [_, product]} = Inventory.get_complete_products()
+    Inventory.mark_product_released!(product.id)
+
+    navigate_to("http://localhost:4002")
+
+    [item_1, _item_2] = product.items
+
+    assert [item_1_button] =
+             find_all_elements(:css, ".size-container__entry[value='#{item_1.id}']")
+
+    assert outer_html(item_1_button) =~ "size-container__entry--level-low"
+    refute outer_html(item_1_button) =~ "size-container__entry--level-out"
+
+    # Make the item be out of stock
+    new_item_1 = Map.put(item_1, :available_count, 0)
+    opts = [previous_item: item_1, current_item: new_item_1]
+    Sneakers23Web.notify_item_stock_change(opts)
+
+    refute outer_html(item_1_button) =~ "size-container__entry--level-low"
+    assert outer_html(item_1_button) =~ "size-container__entry--level-out"
+  end
 end
