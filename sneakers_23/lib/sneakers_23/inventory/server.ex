@@ -1,11 +1,11 @@
-#---
+# ---
 # Excerpted from "Real-Time Phoenix",
 # published by The Pragmatic Bookshelf.
 # Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/sbsockets for more book information.
-#---
+# ---
 defmodule Sneakers23.Inventory.Server do
   use GenServer
 
@@ -52,5 +52,11 @@ defmodule Sneakers23.Inventory.Server do
   def handle_call({:set_item_availability, availability}, _from, inventory) do
     new_inventory = Inventory.add_availabilities(inventory, [availability])
     {:reply, {:ok, inventory, new_inventory}, new_inventory}
+  end
+
+  if Mix.env() == :test do
+    def handle_call({:test_set_inventory, inventory}, _from, _old) do
+      {:reply, {:ok, inventory}, inventory}
+    end
   end
 end

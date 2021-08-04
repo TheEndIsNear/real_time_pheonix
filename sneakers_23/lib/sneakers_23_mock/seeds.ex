@@ -1,11 +1,11 @@
-#---
+# ---
 # Excerpted from "Real-Time Phoenix",
 # published by The Pragmatic Bookshelf.
 # Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/sbsockets for more book information.
-#---
+# ---
 defmodule Sneakers23Mock.Seeds do
   @moduledoc """
   Provides Ecto data inserts for a fake set of data. Run this clean by
@@ -48,7 +48,7 @@ defmodule Sneakers23Mock.Seeds do
   end
 
   def create_item!(params = %{product_sku: psku}, products) do
-    product = Enum.find(products, & &1.sku == psku)
+    product = Enum.find(products, &(&1.sku == psku))
     params = Map.put(params, :product_id, product.id)
 
     %Item{}
