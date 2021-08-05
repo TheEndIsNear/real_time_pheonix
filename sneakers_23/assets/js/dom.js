@@ -1,3 +1,5 @@
+import { getCarHtml, getCartHtml } from './cartRenderer'
+
 const dom = {}
 
 function getProductIds() {
@@ -11,7 +13,7 @@ function replaceProductComingSoon(productId, sizeHtml) {
 
   productSoonEls.forEach((el) => {
     const fragment = document.createRange()
-                      .createContextualFragment(sizeHtml)
+      .createContextualFragment(sizeHtml)
     el.replaceWith(fragment)
   })
 }
@@ -29,6 +31,10 @@ function updateItemLevel(itemId, level) {
 dom.getProductIds = getProductIds
 dom.replaceProductComingSoon = replaceProductComingSoon
 dom.updateItemLevel = updateItemLevel
+dom.renderCartHtml = (cart) => {
+  const cartContainer = document.getElementById("cart-container")
+  cartContainer.innerHTML = getCartHtml(cart)
+}
 
 function removeStockLevelClasses(el) {
   Array.from(el.classList).
