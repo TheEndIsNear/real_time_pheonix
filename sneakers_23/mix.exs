@@ -18,7 +18,14 @@ defmodule Sneakers23.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      prefered_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -51,7 +58,8 @@ defmodule Sneakers23.MixProject do
       {:gettext, "~> 0.18.2"},
       {:jason, "~> 1.2.2"},
       {:plug_cowboy, "~> 2.0"},
-      {:hound, "~> 1.0"}
+      {:hound, "~> 1.0"},
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 

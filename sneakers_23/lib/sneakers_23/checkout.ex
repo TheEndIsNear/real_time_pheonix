@@ -1,6 +1,6 @@
 defmodule Sneakers23.Checkout do
   alias __MODULE__.{ShoppingCart}
-@cart_id_length 64
+  @cart_id_length 64
 
   defdelegate add_item_to_cart(cart, item), to: ShoppingCart, as: :add_item
 
@@ -11,10 +11,11 @@ defmodule Sneakers23.Checkout do
   defdelegate remove_item_from_cart(cart, item), to: ShoppingCart, as: :remove_item
 
   def restore_cart(nil), do: ShoppingCart.new()
-  def restor_cart(serialized) do
+
+  def restore_cart(serialized) do
     case ShoppingCart.deserialize(serialized) do
       {:ok, cart} -> cart
-      {:error, _} -> restor_cart(nil)
+      {:error, _} -> restore_cart(nil)
     end
   end
 

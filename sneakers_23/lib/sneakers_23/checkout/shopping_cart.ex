@@ -15,6 +15,8 @@ defmodule Sneakers23.Checkout.ShoppingCart do
     end
   end
 
+  def add_item(_cart, _id), do: {:error, :invalid_id}
+
   def remove_item(cart = %{items: items}, id) when is_integer(id) do
     if id in items do
       {:ok, %{cart | items: List.delete(items, id)}}
@@ -22,6 +24,8 @@ defmodule Sneakers23.Checkout.ShoppingCart do
       {:error, :not_found}
     end
   end
+
+  def remove_item(_cart, _id), do: {:error, :invalid_id}
 
   def item_ids(%{items: items}), do: items
 
