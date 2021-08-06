@@ -75,7 +75,9 @@ defmodule Sneakers23Web do
     Sneakers23.PubSub
     |> Phoenix.PubSub.node_name()
     |> Phoenix.PubSub.direct_broadcast!(
-      Sneakers23.PubSub, "item_out:#{id}", {:item_out, id}
+      Sneakers23.PubSub,
+      "item_out:#{id}",
+      {:item_out, id}
     )
   end
 

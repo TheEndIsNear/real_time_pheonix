@@ -96,7 +96,7 @@ defmodule Sneakers23Web.ShoppingCartChannel do
   end
 
   defp modify_subscriptions(%{"added" => add, "removed" => remove}) do
-    Enum.each(add, & send(self(), {:subscribe, &1}))
-    Enum.each(remove, & send(self(), {:unsubscribe, &1}))
+    Enum.each(add, &send(self(), {:subscribe, &1}))
+    Enum.each(remove, &send(self(), {:unsubscribe, &1}))
   end
 end
