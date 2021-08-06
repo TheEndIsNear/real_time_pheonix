@@ -1,6 +1,11 @@
 defmodule Sneakers23Web.CartView do
   @product_attrs [
-    :brand, :color, :name, :price_usd, :main_image_url, :released
+    :brand,
+    :color,
+    :name,
+    :price_usd,
+    :main_image_url,
+    :released
   ]
 
   @item_attrs [:id, :size, :sku]
@@ -19,16 +24,17 @@ defmodule Sneakers23Web.CartView do
 
   defp render_items(products, item_ids) do
     for product <- products,
-      item <- product.items,
-      item.id in item_ids do
-        render_item(product, item)
-      end
-      |> Enum.sort_by(& &1.id)
+        item <- product.items,
+        item.id in item_ids do
+      render_item(product, item)
+    end
+    |> Enum.sort_by(& &1.id)
   end
 
   defp render_item(product, item) do
     product_attributes = Map.take(product, @product_attrs)
     item_attributes = Map.take(item, @item_attrs)
+
     product_attributes
     |> Map.merge(item_attributes)
     |> Map.put(:out_of_stock, item.available_count == 0)

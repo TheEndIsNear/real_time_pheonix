@@ -25,8 +25,21 @@ defmodule Sneakers23Web.ShoppingCartChannel do
         broadcast_cart(new_cart, socket, added: [id])
         socket = assign(socket, :cart, new_cart)
         {:reply, {:ok, cart_to_map(new_cart)}, socket}
-        {:error, :duplicate_item} ->
-          {:reply, {:error, %{error: "duplicate_item"}}, socket}
+
+      {:error, :duplicate_item} ->
+        {:reply, {:error, %{error: "duplicate_item"}}, socket}
+    end
+  end
+
+  def handle_in("remove_item", %{"item_id" => id}, socket = %{assigns: %{cart: cart}}) do
+    case Checkout.remove_item_from_cart(cart, String.to_integer(id)) do
+      {:ok, new_cart} ->
+        broadcast_cart(new_cart, socket, removed: [id])
+        socket = assign(socket, :cart, new_cart)
+        {:reply, {:ok, cart_to_map(new_cart)}, socket}
+
+      {:error, :not_found} ->
+        {:error, {:error, %{error: "not_found"}}, socket}
     end
   end
 

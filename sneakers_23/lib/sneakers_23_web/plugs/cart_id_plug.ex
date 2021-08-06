@@ -14,8 +14,8 @@ defmodule Sneakers23Web.CartIdPlug do
         cart_id = Sneakers23.Checkout.generate_cart_id()
         {:ok, put_session(conn, :cart_id, cart_id), cart_id}
 
-        cart_id ->
-          {:ok, conn, cart_id}
+      cart_id ->
+        {:ok, conn, cart_id}
     end
   end
 end
