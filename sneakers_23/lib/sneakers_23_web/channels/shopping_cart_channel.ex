@@ -5,6 +5,8 @@ defmodule Sneakers23Web.ShoppingCartChannel do
 
   alias Sneakers23.Checkout
 
+  intercept ["cart_updated"]
+
   def join("cart:" <> id, params, socket) when byte_size(id) == 64 do
     cart = get_cart(params)
     socket = assign(socket, :cart, cart)
@@ -20,6 +22,7 @@ defmodule Sneakers23Web.ShoppingCartChannel do
   def handle_in("add_item", %{"item_id" => id}, socket = %{assigns: %{cart: cart}}) do
     case Checkout.add_item_to_cart(cart, String.to_integer(id)) do
       {:ok, new_cart} ->
+        broadcast_cart(new_cart, socket, added: [id])
         socket = assign(socket, :cart, new_cart)
         {:reply, {:ok, cart_to_map(new_cart)}, socket}
         {:error, :duplicate_item} ->
@@ -27,9 +30,27 @@ defmodule Sneakers23Web.ShoppingCartChannel do
     end
   end
 
+  def handle_out("cart_updated", params, socket) do
+    cart = get_cart(params)
+    socket = assign(socket, :cart, cart)
+    push(socket, "cart", cart_to_map(cart))
+
+    {:noreply, socket}
+  end
+
   defp get_cart(params) do
     params
     |> Map.get("serialized", nil)
     |> Checkout.restore_cart()
+  end
+
+  defp broadcast_cart(cart, socket, opts) do
+    {:ok, serialized} = Checkout.export_cart(cart)
+
+    broadcast_from(socket, "cart_updated", %{
+      "serialized" => serialized,
+      "added" => Keyword.get(opts, :added, []),
+      "removed" => Keyword.get(opts, :removed, [])
+    })
   end
 end
