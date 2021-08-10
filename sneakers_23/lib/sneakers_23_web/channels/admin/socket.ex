@@ -10,9 +10,10 @@ defmodule Sneakers23Web.Admin.Socket do
     case verify(socket, token) do
       {:ok, _} ->
         {:ok, socket}
-        {:error, err} ->
-          Logger.error("#{__MODULE__} connect error #{inspect(err)}")
-          :error
+
+      {:error, err} ->
+        Logger.error("#{__MODULE__} connect error #{inspect(err)}")
+        :error
     end
   end
 
