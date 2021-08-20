@@ -24,7 +24,8 @@ config :sneakers_23, Sneakers23Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "/pQ3LrKcYNFtUJQ5XQBobICQGWUFohT3O6yuz+76ZuzA2khRwvIBpFJx6BTeFTZ/",
   render_errors: [view: Sneakers23Web.ErrorView, accepts: ~w(html json)],
-  pubsub_server: Sneakers23.PubSub
+  pubsub_server: Sneakers23.PubSub,
+  live_view: [signing_salt: "1lV+Ha1Cxqubiuj/za4VW81svDPlm8qU"]
 
 # Configures Elixir's Logger
 config :logger, :console,
